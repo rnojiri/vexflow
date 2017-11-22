@@ -75,6 +75,7 @@ export class BarNote extends Note {
     L('Rendering bar line at: ', this.getAbsoluteX());
     const barline = new Barline(this.type);
     barline.setX(this.getAbsoluteX());
+    barline.setStyle(this.getStyle());
     barline.draw(this.stave);
     this.setRendered();
   }
