@@ -74,6 +74,8 @@ export class BarNote extends Note {
     if (!this.stave) throw new Vex.RERR('NoStave', "Can't draw without a stave.");
     L('Rendering bar line at: ', this.getAbsoluteX());
     const barline = new Barline(this.type);
+    barline.setContext(this.getContext());
+    barline.setStave(this.getStave());
     barline.setX(this.getAbsoluteX());
     barline.setStyle(this.getStyle());
     barline.draw(this.stave);

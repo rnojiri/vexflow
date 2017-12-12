@@ -36,7 +36,7 @@ export class Element {
 
   // Apply current style to Canvas `context`
   applyStyle(context = this.context, style = this.getStyle()) {
-    if (!style) return this;
+    if (!style || !context) return this;
 
     context.save();
     if (style.shadowColor) context.setShadowColor(style.shadowColor);

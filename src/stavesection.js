@@ -29,6 +29,7 @@ export class StaveSection extends StaveModifier {
   draw(stave, shift_x) {
     const ctx = stave.checkContext();
     this.setRendered();
+    this.applyStyle();
 
     ctx.save();
     ctx.lineWidth = 2;

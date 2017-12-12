@@ -174,6 +174,7 @@ export class TimeSignature extends StaveModifier {
     }
 
     this.setRendered();
+    this.applyStyle();
     this.timeSig.glyph.setStave(this.stave);
     this.timeSig.glyph.setContext(this.stave.context);
     this.placeGlyphOnLine(this.timeSig.glyph, this.stave, this.timeSig.line);

@@ -56,6 +56,11 @@ export class Stave extends Element {
     this.addModifier(new Barline(this.options.left_bar ? BARTYPE.SINGLE : BARTYPE.NONE));
     // end bar
     this.addEndModifier(new Barline(this.options.right_bar ? BARTYPE.SINGLE : BARTYPE.NONE));
+    // sets black to the default color
+    this.defaultElementsStyle = {
+      fillStyle: '#000',
+      strokeStyle: '#000',
+    };
   }
 
   space(spacing) { return this.options.spacing_between_lines_px * spacing; }
@@ -524,6 +529,7 @@ export class Stave extends Element {
     for (let i = 0; i < this.modifiers.length; i++) {
       // Only draw modifier if it has a draw function
       if (typeof this.modifiers[i].draw === 'function') {
+        this.modifiers[i].setContext(this.context);
         this.modifiers[i].draw(this, this.getModifierXShift(i));
       }
     }
@@ -642,5 +648,19 @@ export class Stave extends Element {
     this.options.line_config = lines_configuration;
 
     return this;
+  }
+
+  /**
+  * Sets a default element color for all elements with no style applied.
+  * This avoids apply the same color from a previous element.
+  */
+  setDefaultElementsStyle(style) {
+    if (!style) return this;
+    this.defaultElementsStyle = style;
+    return this;
+  }
+
+  getDefaultElementsStyle() {
+    return this.defaultElementsStyle;
   }
 }

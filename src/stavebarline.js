@@ -77,7 +77,7 @@ export class Barline extends StaveModifier {
   draw(stave) {
     stave.checkContext();
     this.setRendered();
-    this.applyStyle(stave.context);
+    this.applyStyle();
 
     switch (this.type) {
       case Barline.type.SINGLE:

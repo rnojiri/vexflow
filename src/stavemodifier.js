@@ -54,4 +54,20 @@ export class StaveModifier extends Element {
     return (index !== undefined && index < 2 ? 0 : this.padding);
   }
   setPadding(padding) { this.padding = padding; return this; }
+
+  /**
+  * Overwrites the applyStyle() function from Element class.
+  */
+  applyStyle(context = this.context, style = this.getStyle()) {
+    if (!context) {
+      return this;
+    }
+    if (!style) {
+      style = this.stave.getDefaultElementsStyle();
+      if (!style) {
+        return this;
+      }
+    }
+    return super.applyStyle(context, style);
+  }
 }
